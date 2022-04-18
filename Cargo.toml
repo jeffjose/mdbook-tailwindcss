@@ -1,0 +1,24 @@
+[package]
+name = "mdbook-tailwindcss"
+version = "0.1.0"
+
+authors = ["Jeffrey Jose <jeffjosejeff@gmail.com>"]
+categories = ["command-line-utilities"]
+description = "An mdbook preprocessor for adding tailwindcss classes to markdown."
+edition = "2018"
+exclude = [
+    "examples/*",
+]
+homepage = "https://github.com/jeffjose/mdbook-tailwindcss"
+keywords = ["mdbook", "tailwindcss", "markdown", "commonmark","css"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/jeffjose/mdbook-tailwindcss"
+
+[dependencies]
+clap = "3.1.9"
+mdbook = "0.4"
+pulldown-cmark = "0.9.1"
+pulldown-cmark-to-cmark = "10.0.1"
+serde_json = "1.0"
+tailwind-css = "0.12.4"
