@@ -6,6 +6,7 @@ use pulldown_cmark::{CowStr, Event, Parser, Tag};
 use std::io;
 use std::process;
 
+use markedit::Matcher;
 use tailwind_css::TailwindBuilder;
 
 #[derive(Default)]
@@ -56,6 +57,18 @@ fn extract_classnames(text: &str) -> Vec<String> {
 /// Take paragraphs beginning with `{:.class-name}` and give them special rendering.
 /// Mutation: the payload here is that it edits chapter.content.
 fn process_tailwindcss(chapter: &mut Chapter) -> Result<(), Error> {
+    // first we construct the rewriting rule
+    let rule = markedit::change_text(|text| text.contains("Heading"), |text| text.to_uppercase());
+
+    let events_before: Vec<_> = markedit::parse(&chapter.content).collect();
+
+    // now rewrite the events using our rewriter rule
+    let events_after: Vec<_> = markedit::rewrite(events_before, rule).collect();
+
+    eprintln!("XXXXXXXXXXXX");
+    eprintln!("{events_after:#?}");
+    eprintln!("XXXXXXXXXXXX");
+
     // 1. Parse the inbound markdown into an Event vector.
     let incoming_events: Vec<Event> = Parser::new(&chapter.content).collect();
 

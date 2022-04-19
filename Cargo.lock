@@ -753,6 +753,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3e2e65a1a2e43cfcb47a895c4c8b10d1f4a61097f9f254f183aee60cad9c651d"
 
 [[package]]
+name = "markedit"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a595a0636f9e2b0006650839d64b4ee210e68ca5614084c2ec79fae79a261ea"
+dependencies = [
+ "pulldown-cmark 0.7.1",
+]
+
+[[package]]
 name = "markup5ever"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -824,6 +833,7 @@ name = "mdbook-tailwindcss"
 version = "0.1.1"
 dependencies = [
  "clap 3.1.9",
+ "markedit",
  "mdbook",
  "pulldown-cmark 0.9.1",
  "pulldown-cmark-to-cmark",
