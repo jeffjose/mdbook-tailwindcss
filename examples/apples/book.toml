@@ -5,5 +5,5 @@ multilingual = false
 src = "src"
 title = "An MdBook Tailwindcss Preprocessor Example"
 
-[preprocessor.classy]
+[preprocessor.tailwindcss]
 command = "../../target/debug/mdbook-tailwindcss"

@@ -43,6 +43,15 @@ struct ClassAnnotation {
     pub paragraph_end: Option<usize>,
 }
 
+fn extract_classnames(text: &str) -> Vec<String> {
+    text.replace("{:", "")
+        .replace('}', "")
+        .replace('.', "")
+        .split(' ')
+        .map(String::from)
+        .collect()
+}
+
 /// This is where the markdown transformation actually happens.
 /// Take paragraphs beginning with `{:.class-name}` and give them special rendering.
 /// Mutation: the payload here is that it edits chapter.content.
@@ -57,6 +66,20 @@ fn process_tailwindcss(chapter: &mut Chapter) -> Result<(), Error> {
     let mut class_annotations: Vec<ClassAnnotation> = vec![];
     for i in 0..incoming_events.len() {
         let event = &incoming_events[i];
+        eprintln!("{event:?}");
+
+        if let Event::Start(Tag::Paragraph) = *event {
+            if let Event::Text(CowStr::Borrowed(text)) = incoming_events[i + 1] {
+                //let target = incoming_events[i + 3];
+                if text.starts_with("{:.") {
+                    let classnames = extract_classnames(text);
+                    eprintln!("---  INPUT: {text}");
+                    eprintln!("---  CLASS: {classnames:?}");
+                    //eprintln!("--- TARGET: {target:?}");
+                }
+            }
+        }
+
         match *event {
             Event::Text(CowStr::Borrowed(text)) => {
                 if i > 0 {

@@ -4,6 +4,8 @@
 It is ideal for creating product or API documentation, tutorials, course materials or anything that requires a clean,
 easily navigable and customizable presentation.
 
+
+{:.text-red-500 font-large pt-10 mr-20}
 - Lightweight [Markdown] syntax helps you focus more on your content
 - Integrated [search] support
 - Color [syntax highlighting] for code blocks for many different languages
